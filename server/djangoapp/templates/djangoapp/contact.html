@@ -5,10 +5,17 @@
     <title>Dealership Review</title>
     {% load static %}
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+       
 </head>
+ <body>
 
-    <body>
-            <!--Add a nav bar here -->
+    #Add a nav bar here 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,13 +24,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item">
-                <a class="nav-link" href="/djangoapp">Home</a>
+                <a class="nav-link" href="./">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/djangoapp/about">About us</a>
+                <a class="nav-link" href="about">About us</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/djangoapp/contact">Contact us</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="contact">Contact us</a>
               </li>
               
 
@@ -67,41 +74,24 @@
             {% endif %}
           </div>
     </nav>
-
-    <!--Add a dealer details -->
     <div class="text-center">
         <h1 class="display-4">
-          Dealer: {{dealer.full_name}}
+          Contact us
         </h1>
         <div class="card">
           <div class="card-body">
-            {{dealer.address}}
-            <br>{{dealer.city}}
-            <br>{{dealer.state}}
-            <br>{{dealer.zip}}
-            <br><br>
+            Dummy Address
+            <br>1234 Elrond Place
+            <br>55555
+            <br>Middle of Nowhere, Delaware
+            <br>Telephone : 1-899-555-6996
+            <br>Email : contact@bestdealerships.com
           </div>
         </div>
     </div>
-    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center;">
-        {% if user.is_authenticated %}
-        <h3> Customer reviews </h3>
-        <a class="btn btn-link" href="/djangoapp/add_review?dealer={{dealer.id}}"> Add review </a>
-          <div class="card-columns">
-            {% for review in reviews %}
-            <div class="card" style="width: 18rem;">
-                <div class="card-title">
-                  <img class="card-img-left" style="width:2rem;" src="{{MEDIA_URL}}/emoji/{{review.sentiment}}.png">
-                </div>
-                <div class="card-body">
-                  <div class="card-text"><i>{{review.car_make}} {{review.car_model}}</i></div>
-                  <h4 class="card-text"><b>{{review.review}}</b></h4>
-                  <div class="card-text">{{review.car_year}}</div>
-                </div>
-              </div>
-            {% endfor %}
-            {% endif%}
-        </div>
-    </div>
-</body>
+</body> --> 
+{% endcomment %}
+
+
+
 </html>

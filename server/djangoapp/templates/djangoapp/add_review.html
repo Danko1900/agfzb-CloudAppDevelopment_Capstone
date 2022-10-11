@@ -10,7 +10,109 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
 </head>
-    <body>
-    <!--Add review form here -->
+<body>
+
+    <!--Add a nav bar here -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/djangoapp">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/djangoapp/about">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/djangoapp/contact">Contact us</a>
+              </li>
+              
+
+            </ul>
+            {% if user.is_authenticated %}
+            <a class="btn btn-link" href="#"
+            >{{ user.first_name }}({{ user.username }})</a
+          >
+          <a class="btn btn-link" href="{% url 'djangoapp:logout' %}"
+            >Logout</a
+          >
+            {% else %}
+            <form
+            class="form-inline"
+            action="{% url 'djangoapp:login' %}"
+            method="post"
+          >
+            {% csrf_token %}
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Username"
+                name="username"
+              />
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Password"
+                name="password"
+              />
+              <button class="btn btn-primary" type="submit">Login</button>
+              <a
+                class="btn btn-link"
+                href="{% url 'djangoapp:registration' %}"
+                >Sign Up</a
+              >
+            </div>
+          </form>
+
+            {% endif %}
+          </div>
+    </nav>
+
+    <!--Add a dealer review -->
+    <div class="container">
+        <form class="row g-3" action="{% url 'djangoapp:review' %}" method="post">
+            {% csrf_token %}
+                <h1>Your Review</h1>
+                <hr class="mt-2 mb-3"/>
+              <div class="col-12">
+                <label for="name" class="form-label">Your Name</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
+              </div>
+              <div class="col-12">
+                <input type="hidden" name="dealership" id="dealership" required value="{{request.GET.dealer}}">
+              </div>
+              <div class="col-12">
+                <label for="review" class="form-label">Review</label>
+                <input type="textarea" class="form-control" name="review" id="review" placeholder="Your opinion" required>
+              </div>
+              <div class="col-12">
+                <label for="purchase" class="form-label">Did you purchase?</label>
+                <input type="checkbox" name="purchase" id="purchase">
+              </div>
+              <div class="col-12">
+                <label for="purchase_date" class="form-label">Purchase date</label>
+                <input type="date" name="purchase_date" id="purchase_date" value="2022-01-31" required>
+              </div>
+              <div class="col-12">
+                <label for="car_make" class="form-label">Car make</label>
+                <input type="text" class="form-control" name="car_make" id="car_make" required>
+              </div>
+              <div class="col-12">
+                <label for="car_model" class="form-label">Car model</label>
+                <input type="text" class="form-control" name="car_model" id="car_model" required>
+              </div>
+              <div class="col-12">
+                <label for="car_year" class="form-label">Car year</label>
+                <input type="text" class="form-control" name="car_year" id="car_year" required>
+              </div>
+              <div class="col-12">
+                <input type="submit" class="btn btn-primary" value="Submit">
+              </div>
+
+        </form>
     </body>
 </html>
