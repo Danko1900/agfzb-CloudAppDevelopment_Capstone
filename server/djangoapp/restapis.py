@@ -3,7 +3,7 @@ import json
 # import related models here
 from requests.auth import HTTPBasicAuth
 from djangoapp.models import CarDealer
-from djangoapp.models import DealerReviw
+from djangoapp.models import DealerReview
 import urllib
 
 
@@ -44,7 +44,7 @@ def get_dealer_by_id_from_cf(url, dealerId):
     for review in json_result:
         if str(review["dealership"]) == dealerId:
             sentiment = analyze_review_sentiments(review["review"])
-            review_obj = DealerReviw(dealership=review["dealership"], name=review["name"], purchase=review["purchase"], review=review["review"], purchase_date=review["purchase_date"], car_make=review["car_make"], car_model=review["car_model"],car_year=review["car_year"], sentiment=sentiment)
+            review_obj = DealerReview(dealership=review["dealership"], name=review["name"], purchase=review["purchase"], review=review["review"], purchase_date=review["purchase_date"], car_make=review["car_make"], car_model=review["car_model"],car_year=review["car_year"], sentiment=sentiment)
 
             
             results.append(review_obj)
